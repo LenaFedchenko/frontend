@@ -1,0 +1,182 @@
+
+.candy-header {
+    width: 100%;
+    min-height: 130px;
+    padding: 24px 5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    position: relative;
+    isolation: isolate;
+
+    background: #ff83ae;
+    border-bottom: 5px solid #b80f43;
+
+    box-shadow: 0 8px 0 #ffbed4;
+}
+
+/* Конфетный узор на фоне */
+.candy-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(circle, #fff1f6 3px, transparent 4px),
+        radial-gradient(circle, #f52b70 5px, transparent 6px);
+
+    background-size: 65px 65px, 95px 95px;
+    background-position: 0 0, 25px 30px;
+
+    opacity: 0.35;
+}
+
+/* Название сайта */
+.candy-header .candy-heading {
+    margin: 0 auto 0 0;
+
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: clamp(28px, 4vw, 56px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    white-space: nowrap;
+
+    color: #fff5f8;
+    -webkit-text-stroke: 2px #b80f43;
+
+    text-shadow:
+        3px 3px 0 #ff3476,
+        6px 6px 0 #a80036;
+
+    transform: rotate(-2deg);
+}
+
+/* Общие стили кнопок */
+.candy-button {
+    position: relative;
+
+    padding: 15px 28px;
+    min-height: 54px;
+
+    border: 3px solid #a80036;
+    border-radius: 50px;
+    cursor: pointer;
+
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+/* Кнопка всех постов */
+.candy-button--all {
+    background: #fff1f6;
+    color: #b80f43;
+
+    box-shadow:
+        5px 5px 0 #b80f43,
+        inset 0 3px 0 #ffffff;
+}
+
+/* Кнопка профиля */
+.candy-button--profile {
+    background: #e60046;
+    color: #ffffff;
+
+    box-shadow:
+        5px 5px 0 #a80036,
+        inset 0 3px 0 #ff75a3;
+}
+
+/* Световой блик на кнопках */
+.candy-button::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 18px;
+
+    width: 35%;
+    height: 5px;
+
+    background: rgba(255, 255, 255, 0.65);
+    border-radius: 50px;
+
+    transform: rotate(-6deg);
+}
+
+.candy-button:hover {
+    transform: translateY(-5px) rotate(-3deg);
+}
+
+.candy-button--all:hover {
+    background: #ffffff;
+    box-shadow: 7px 9px 0 #b80f43;
+}
+
+.candy-button--profile:hover {
+    background: #ff2468;
+    box-shadow: 7px 9px 0 #a80036;
+}
+
+.candy-button:active {
+    transform: translate(4px, 4px);
+    box-shadow: 1px 1px 0 #a80036;
+}
+
+.candy-button:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 5px;
+}
+
+/* Планшеты */
+@media (max-width: 850px) {
+    .candy-header {
+        justify-content: center;
+        padding: 25px 20px;
+    }
+
+    .candy-header .candy-heading {
+        width: 100%;
+        margin: 0;
+        text-align: center;
+    }
+}
+
+/* Телефоны */
+@media (max-width: 480px) {
+    .candy-header {
+        gap: 14px;
+        padding: 22px 14px;
+    }
+
+    .candy-header .candy-heading {
+        font-size: clamp(26px, 8vw, 40px);
+        letter-spacing: -1px;
+    }
+
+    .candy-button {
+        flex: 1;
+        min-width: 0;
+        padding: 13px 10px;
+        font-size: 13px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .candy-button {
+        transition: none;
+    }
+}

@@ -1,0 +1,229 @@
+
+.candy-card {
+    position: relative;
+    isolation: isolate;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 420px;
+    min-width: 0;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow: hidden;
+
+    background: #ffb6d1;
+    border: 3px solid #b80f43;
+    border-radius: 32px 65px 35px 55px;
+
+    box-shadow:
+        8px 8px 0 #b80f43,
+        14px 14px 0 #ff5c94,
+        0 20px 45px rgba(184, 15, 67, 0.18);
+
+    font-family: 'Trebuchet MS', sans-serif;
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+/* Декоративный леденец */
+.candy-card::before {
+    content: "";
+    position: absolute;
+    width: 155px;
+    height: 155px;
+    right: -45px;
+    top: -50px;
+    border-radius: 50%;
+    z-index: -1;
+
+    background:
+        repeating-conic-gradient(
+            from 20deg,
+            #fff0f5 0deg 25deg,
+            #ff2468 25deg 50deg,
+            #ff80ab 50deg 75deg
+        );
+
+    border: 8px solid #fff1f6;
+    box-shadow:
+        0 0 0 5px #c71550,
+        0 12px 20px rgba(180, 0, 55, 0.25);
+
+    animation: candy-spin 15s linear infinite;
+}
+
+/* Второй леденец */
+.candy-card::after {
+    content: "";
+    position: absolute;
+    width: 105px;
+    height: 105px;
+    left: -45px;
+    bottom: -45px;
+    z-index: -1;
+    border-radius: 50%;
+
+    background:
+        repeating-conic-gradient(
+            #e60046 0deg 35deg,
+            #fff0f5 35deg 70deg
+        );
+
+    border: 6px solid #fff;
+    box-shadow: 0 0 0 4px #b80f43;
+}
+
+.candy-card:hover {
+    transform: translateY(-8px) rotate(-1deg);
+    box-shadow:
+        12px 14px 0 #b80f43,
+        18px 20px 0 #ff5c94,
+        0 25px 50px rgba(184, 15, 67, 0.25);
+}
+
+/* Верхняя часть */
+.candy-card__header {
+    position: relative;
+    padding: 20px 22px;
+    border-radius: 22px 45px 22px 22px;
+    background: #fff1f6;
+    border: 2px solid #e91e63;
+    box-shadow: 5px 5px 0 #f65c91;
+}
+
+.candy-card__title {
+    margin: 0;
+    position: relative;
+    z-index: 1;
+
+    font-size: clamp(24px, 4vw, 34px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    overflow-wrap: anywhere;
+    color: #ba003d;
+
+    text-shadow: 2px 2px 0 #ffb3ce;
+}
+
+/* Основной текст */
+.candy-card__body {
+    padding: 24px;
+    border-radius: 28px 18px 28px 18px;
+
+    background: #fff7fa;
+    border: 2px dashed #f0447a;
+    box-shadow: inset 0 0 18px rgba(255, 85, 145, 0.12);
+}
+
+.candy-card__content {
+    margin: 0;
+    color: #812042;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+/* Нижняя часть */
+.candy-card__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.candy-card__category,
+.candy-card__author {
+    margin: 0;
+    padding: 11px 16px;
+    border-radius: 50px;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    overflow-wrap: anywhere;
+
+    transition: transform 0.25s ease;
+}
+
+.candy-card__category {
+    background: #e60046;
+    color: white;
+    border: 2px solid #a80036;
+    box-shadow: 4px 4px 0 #ff7aab;
+}
+
+.candy-card__author {
+    background: #fff0f5;
+    color: #ac1247;
+    border: 2px solid #e60046;
+    box-shadow: 4px 4px 0 #ff6d9e;
+}
+
+.candy-card__category:hover,
+.candy-card__author:hover {
+    transform: scale(1.06) rotate(-2deg);
+}
+
+/* Вращение леденца */
+@keyframes candy-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Адаптация под телефоны */
+@media (max-width: 480px) {
+    .candy-card {
+        padding: 20px;
+        gap: 18px;
+        border-radius: 25px 45px 25px 40px;
+        box-shadow:
+            5px 5px 0 #b80f43,
+            9px 9px 0 #ff5c94;
+    }
+
+    .candy-card__header {
+        padding: 16px;
+    }
+
+    .candy-card__title {
+        font-size: 24px;
+    }
+
+    .candy-card__body {
+        padding: 18px;
+    }
+
+    .candy-card__content {
+        font-size: 14px;
+    }
+
+    .candy-card__footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .candy-card::before {
+        width: 105px;
+        height: 105px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .candy-card,
+    .candy-card::before,
+    .candy-card__category,
+    .candy-card__author {
+        animation: none;
+        transition: none;
+    }
+}

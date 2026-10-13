@@ -1,0 +1,164 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.candy-app {
+  min-height: 100vh;
+  padding: 65px 24px 100px;
+  overflow: hidden;
+  position: relative;
+
+  background-color: #ffe0eb;
+  background-image:
+    radial-gradient(circle at 10% 20%, #ff7fa9 0 18px, transparent 19px),
+    radial-gradient(circle at 85% 15%, #ff4f87 0 25px, transparent 26px),
+    radial-gradient(circle at 40% 65%, #ffc1d6 0 35px, transparent 36px),
+    radial-gradient(circle at 90% 80%, #ff8bad 0 20px, transparent 21px),
+    radial-gradient(circle at 15% 85%, #ffb2cd 0 28px, transparent 29px);
+
+  background-size: 450px 450px;
+}
+
+.candy-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Главный заголовок */
+.candy-heading {
+  margin: 0;
+  text-align: center;
+
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: clamp(48px, 9vw, 110px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -4px;
+
+  color: #fff1f6;
+
+  -webkit-text-stroke: 3px #b80f43;
+
+  text-shadow:
+    5px 5px 0 #ff3476,
+    10px 10px 0 #b80f43,
+    15px 15px 0 #ff9fc0;
+
+  transform: rotate(-2deg);
+  animation: candy-appear 0.8s ease both;
+}
+
+/* Подзаголовок */
+.candy-subtitle {
+  width: fit-content;
+  max-width: 100%;
+  margin: 35px auto 60px;
+  padding: 14px 28px;
+
+  text-align: center;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: clamp(14px, 2vw, 19px);
+  font-weight: 800;
+
+  color: #a80036;
+  background: #fff5f8;
+
+  border: 3px dashed #e60046;
+  border-radius: 50px;
+
+  box-shadow: 6px 6px 0 #ff77a4;
+  transform: rotate(1deg);
+}
+
+/* Сетка карточек */
+.candy-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+
+  gap: 50px 35px;
+  align-items: stretch;
+  justify-items: center;
+}
+
+/* Карточки внутри сетки */
+.candy-grid .candy-card {
+  max-width: 420px;
+  height: 100%;
+  min-width: 0;
+}
+
+/* Всплывающее появление */
+@keyframes candy-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-40px) rotate(-6deg) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(-2deg) scale(1);
+  }
+}
+
+/* Планшеты */
+@media (max-width: 900px) {
+  .candy-app {
+    padding: 50px 25px 80px;
+  }
+
+  .candy-grid {
+    gap: 35px 25px;
+  }
+
+  .candy-heading {
+    letter-spacing: -2px;
+  }
+}
+
+/* Телефоны */
+@media (max-width: 600px) {
+  .candy-app {
+    padding: 35px 20px 70px;
+  }
+
+  .candy-heading {
+    font-size: clamp(40px, 12vw, 65px);
+    letter-spacing: -1px;
+
+    -webkit-text-stroke: 2px #b80f43;
+
+    text-shadow:
+      3px 3px 0 #ff3476,
+      6px 6px 0 #b80f43;
+  }
+
+  .candy-subtitle {
+    margin: 28px auto 45px;
+    padding: 12px 18px;
+    font-size: 13px;
+  }
+
+  .candy-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .candy-grid .candy-card {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .candy-heading {
+    animation: none;
+  }
+}
