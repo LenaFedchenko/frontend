@@ -162,3 +162,71 @@ body {
     animation: none;
   }
 }
+
+.candy-skeleton {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(255, 100, 150, 0.1);
+}
+
+.skeleton-image,
+.skeleton-title,
+.skeleton-text {
+  background: linear-gradient(
+    90deg,
+    #ffe0ec 25%,
+    #fff3f8 50%,
+    #ffe0ec 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 10px;
+}
+
+.skeleton-image {
+  height: 140px;
+  margin-bottom: 20px;
+}
+
+.skeleton-title {
+  height: 25px;
+  width: 70%;
+  margin-bottom: 15px;
+}
+
+.skeleton-text {
+  height: 14px;
+  margin-bottom: 10px;
+}
+
+.skeleton-text.short {
+  width: 50%;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.candy-status {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 25px;
+  background: white;
+  border-radius: 20px;
+  border: 2px dashed #ffb3d1;
+}
+
+.candy-status h2 {
+  color: #ff4f95;
+  margin-bottom: 10px;
+}
+
+.candy-status p {
+  color: #a86c88;
+}
