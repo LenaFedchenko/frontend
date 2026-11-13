@@ -1,0 +1,357 @@
+
+/* Фон страницы */
+body:has(form) {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: linear-gradient(
+        180deg,
+        #ffd3e2 0%,
+        #fff1f6 50%,
+        #ffe3ee 100%
+    );
+}
+
+/* Конфетный дождь */
+body:has(form)::before,
+body:has(form)::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Первый слой конфет */
+body:has(form)::before {
+    background-image:
+        radial-gradient(circle at 20px 20px, #ff4f8b 0 10px, transparent 11px),
+        radial-gradient(circle at 80px 50px, #ff9cc0 0 9px, transparent 10px),
+        radial-gradient(circle at 150px 30px, #ffffff 0 8px, transparent 9px),
+        radial-gradient(circle at 220px 80px, #ff6fa1 0 10px, transparent 11px),
+        radial-gradient(circle at 300px 40px, #ffc1d8 0 9px, transparent 10px),
+        radial-gradient(circle at 380px 90px, #ff2f75 0 10px, transparent 11px);
+
+    background-size: 420px 180px;
+    animation: candyRain 10s linear infinite;
+    opacity: 0.75;
+}
+
+/* Второй слой конфет */
+body:has(form)::after {
+    background-image:
+        radial-gradient(circle at 50px 30px, #fff6fa 0 7px, transparent 8px),
+        radial-gradient(circle at 140px 70px, #ff7fab 0 8px, transparent 9px),
+        radial-gradient(circle at 250px 20px, #ffd0e0 0 8px, transparent 9px),
+        radial-gradient(circle at 340px 60px, #ffffff 0 7px, transparent 8px);
+
+    background-size: 360px 160px;
+    animation: candyRainSlow 14s linear infinite;
+    opacity: 0.55;
+}
+
+@keyframes candyRain {
+    from {
+        background-position: 0 -180px;
+    }
+
+    to {
+        background-position: 0 0;
+    }
+}
+
+@keyframes candyRainSlow {
+    from {
+        background-position: 40px -160px;
+    }
+
+    to {
+        background-position: 40px 0;
+    }
+}
+
+/* Контент поверх дождя */
+#root {
+    position: relative;
+    z-index: 1;
+}
+
+/* Только контейнер формы, не Header */
+#root > div:has(> form) {
+    width: calc(100% - 32px);
+    max-width: 420px;
+    margin: 80px auto 60px;
+    position: relative;
+}
+
+/* Карточка регистрации */
+#root > div > form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    padding: 35px 30px 28px;
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.96);
+    border: 4px solid #b80f43;
+    border-radius: 30px;
+
+    box-shadow:
+        8px 8px 0 #ff83ae,
+        13px 13px 0 #b80f43,
+        0 20px 45px rgba(184, 15, 67, 0.12);
+
+    backdrop-filter: blur(8px);
+
+    font-family: 'Trebuchet MS', sans-serif;
+    position: relative;
+}
+
+/* Заголовок формы */
+#root > div > form::before {
+    content: "CANDY REGISTER";
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-size: clamp(25px, 4vw, 34px);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    text-align: center;
+
+    color: #fff5f8;
+    -webkit-text-stroke: 2px #b80f43;
+
+    text-shadow:
+        3px 3px 0 #ff3476,
+        6px 6px 0 #a80036;
+
+    transform: rotate(-2deg);
+}
+
+/* Поля ввода */
+#root > div > form input {
+    width: 100%;
+    min-height: 56px;
+    padding: 15px 18px;
+    box-sizing: border-box;
+
+    background: #fff1f6;
+    border: 3px solid #ff83ae;
+    border-radius: 18px;
+    outline: none;
+
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+
+    color: #a80036;
+
+    box-shadow: 4px 4px 0 #ffbed4;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+/* Placeholder */
+#root > div > form input::placeholder {
+    color: #d76a91;
+    font-weight: 600;
+}
+
+/* Наведение */
+#root > div > form input:hover {
+    background: #ffffff;
+    border-color: #ff3476;
+}
+
+/* Активное поле */
+#root > div > form input:focus {
+    background: #ffffff;
+    border-color: #b80f43;
+
+    box-shadow:
+        5px 5px 0 #ff83ae,
+        0 0 0 4px #ffe1ec;
+
+    transform: translateY(-2px);
+}
+
+/* Кнопка регистрации */
+#root > div > form button {
+    position: relative;
+
+    width: 100%;
+    min-height: 58px;
+    margin-top: 10px;
+    padding: 15px 28px;
+
+    background: #e60046;
+    border: 3px solid #a80036;
+    border-radius: 50px;
+    cursor: pointer;
+    overflow: hidden;
+
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+
+    color: #ffffff;
+
+    box-shadow:
+        6px 6px 0 #a80036,
+        inset 0 3px 0 #ff75a3;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+/* Блик на кнопке */
+#root > div > form button::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 20px;
+
+    width: 30%;
+    height: 5px;
+
+    background: rgba(255, 255, 255, 0.65);
+    border-radius: 50px;
+
+    transform: rotate(-6deg);
+}
+
+/* Наведение на кнопку */
+#root > div > form button:hover {
+    background: #ff2468;
+
+    box-shadow:
+        8px 10px 0 #a80036,
+        inset 0 3px 0 #ff91b5;
+
+    transform: translateY(-5px) rotate(-1deg);
+}
+
+/* Нажатие */
+#root > div > form button:active {
+    transform: translate(5px, 5px);
+    box-shadow: 1px 1px 0 #a80036;
+}
+
+/* Фокус кнопки */
+#root > div > form button:focus-visible {
+    outline: 3px solid #ff3476;
+    outline-offset: 5px;
+}
+
+/* Телефоны */
+@media (max-width: 480px) {
+    #root > div:has(> form) {
+        width: calc(100% - 36px);
+        margin: 45px auto 40px;
+    }
+
+    #root > div > form {
+        padding: 30px 22px 25px;
+        gap: 16px;
+
+        border-radius: 24px;
+
+        box-shadow:
+            7px 7px 0 #ff83ae,
+            10px 10px 0 #b80f43;
+    }
+
+    #root > div > form::before {
+        font-size: 26px;
+    }
+
+    #root > div > form input {
+        min-height: 52px;
+        padding: 14px 16px;
+        font-size: 14px;
+    }
+
+    #root > div > form button {
+        min-height: 55px;
+        font-size: 16px;
+    }
+}
+
+/* Отключение анимаций */
+@media (prefers-reduced-motion: reduce) {
+    body:has(form)::before,
+    body:has(form)::after {
+        animation: none;
+    }
+
+    #root > div > form input,
+    #root > div > form button {
+        transition: none;
+    }
+}
+.candy-login {
+    display: block;
+    width: 100%;
+    min-height: 52px;
+    margin-top: 25px;
+    padding: 14px 24px;
+    box-sizing: border-box;
+
+    background: #fff1f6;
+    border: 3px solid #b80f43;
+    border-radius: 50px;
+
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    text-align: center;
+    text-decoration: none;
+
+    color: #b80f43;
+
+    box-shadow:
+        5px 5px 0 #ff83ae,
+        inset 0 3px 0 #ffffff;
+
+    transition: 0.25s ease;
+}
+
+.candy-login:hover {
+    background: #ffbed4;
+    transform: translateY(-4px) rotate(-1deg);
+    box-shadow: 7px 8px 0 #ff83ae;
+}
+
+.candy-login:active {
+    transform: translate(4px, 4px);
+    box-shadow: 1px 1px 0 #ff83ae;
+}
+.candy-login {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 25px;
+    padding: 15px;
+
+    background: #fff1f6;
+    border: 3px solid #b80f43;
+    border-radius: 50px;
+
+    color: #b80f43;
+    font-size: 16px;
+    font-weight: 900;
+    text-align: center;
+    text-decoration: none;
+
+    box-shadow: 5px 5px 0 #ff83ae;
+}

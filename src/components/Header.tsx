@@ -1,4 +1,4 @@
-
+import {Link} from 'react-router-dom'
 import '../assets/styles/header.css'
 
 export function Header() {
@@ -8,9 +8,9 @@ export function Header() {
             <button className="candy-button candy-button--all">
                 All Candys
             </button>
-            <button className="candy-button candy-button--profile">
-                Profile
-            </button>
+            <Link to="/users/register" className="candy-button candy-button--profile">
+                Register
+            </Link>
         </div>
     )
 }

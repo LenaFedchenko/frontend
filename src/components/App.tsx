@@ -1,4 +1,3 @@
-
 import Card from './Card'
 import '../assets/styles/index.css'
 import { useGetPostsQuery } from '../api/baseApi'

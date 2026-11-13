@@ -3,9 +3,14 @@ import '../assets/styles/card.css'
 type CardProps = {
     title: string
     content: string
-    category: string
+    category: {
+        id: number
+        name: string
+        description: string | null
+    } | null
     author: string
 }
+
 
 export function Card({ title, content, category, author }: CardProps) {
     return (
@@ -17,7 +22,9 @@ export function Card({ title, content, category, author }: CardProps) {
                 <p className="candy-card__content">{content}</p>
             </div>
             <div className="candy-card__footer">
-                <p className="candy-card__category">Category: {category}</p>
+                <p className="candy-card__category">
+                    Category: {category?.name ?? "No category"}
+                </p>
                 <p className="candy-card__author">Author: {author}</p>
             </div>
         </div>
